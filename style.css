@@ -1,4 +1,9 @@
 @import url("https://fonts.googleapis.com/css?family=Arima+Madurai:300");
+@import url("https://fonts.googleapis.com/css2?family=Lato");
+
+:root {
+  --primary: #056df7;
+}
 
 *,
 *::before,
@@ -18,15 +23,16 @@ body {
   box-sizing: border-box;
   font-size: 1.6rem;
   background-color: #fff;
-  color: rgb(187, 49, 141);
+  color: var(--primary);
   position: relative;
+  overflow-x: hidden;
 }
 
 nav {
   position: sticky;
   top: 0;
   background-color: #fff;
-  color: rgb(187, 49, 141);
+  color: var(--primary);
   z-index: 999;
   width: 100%;
   padding-top: 1.2rem;
@@ -41,8 +47,8 @@ nav {
   display: flex;
   flex-wrap: nowrap;
   align-items: center;
-  justify-content: flex-start;
-  text-align: left;
+  justify-content: center;
+  text-align: center;
   height: 100%;
 }
 .nav-items {
@@ -58,7 +64,7 @@ nav {
 }
 .nav-link {
   background-color: transparent;
-  color: rgb(187, 49, 141);
+  color: var(--primary);
   text-decoration: none;
   width: fit-content;
   height: fit-content;
@@ -74,11 +80,11 @@ nav {
   outline: none;
 }
 .active {
-  background-color: rgb(187, 49, 141);
+  background-color: var(--primary);
   color: #fff;
 }
 .nav-link:hover {
-  background-color: rgb(187, 49, 141);
+  background-color: var(--primary);
   color: #fff;
   transition: all 0.4s;
   text-decoration: none;
@@ -106,7 +112,7 @@ nav {
   margin-inline-start: 0px;
   margin-inline-end: 0px;
   font-family: "Arima Madurai", cursive;
-  color: black;
+  color: #fff;
   font-size: 9rem;
   letter-spacing: -3px;
   text-shadow: 0px 1px 1px rgba(255, 255, 255, 0.6);
@@ -126,7 +132,7 @@ nav {
       rgba(255, 168, 76, 0.6) 0%,
       rgba(255, 123, 13, 0.6) 100%
     ),
-    url("https://images.unsplash.com/photo-1446824505046-e43605ffb17f");
+    url("https://images2.alphacoders.com/966/96622.jpg");
   background-blend-mode: soft-light;
   background-size: cover;
   background-position: center center;
@@ -244,14 +250,33 @@ nav {
 
 main {
   position: relative;
-  margin: 2rem;
-  margin-top: 5rem;
 }
 
 article {
   margin-bottom: 30rem;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  background-image: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.7) 0%,
+      rgba(79, 224, 239, 0.7) 30%,
+      rgba(5, 109, 247, 0.7) 84%
+    ),
+    url(/photos/beach-dawn-dusk-ocean-189349.jpg);
+  background-size: cover;
+  background-position: top;
+  position: relative;
+  padding: 2rem;
+  clip-path: polygon(0 0, 100% 0, 100% 85%, 0% 100%);
+  transform: translate(-20%, 0%);
+  opacity: 0;
+  transition: transform 400ms ease-in-out, opacity 400ms ease-in-out;
 }
-
+.slide-in {
+  transform: translate(0%, 0%);
+  opacity: 1;
+}
 @keyframes infinte_loop {
   0% {
     transform: translate(0%, 0%);
@@ -286,20 +311,33 @@ article {
 }
 .article-title {
   font-size: 3.5rem;
-  margin-bottom: 2.5rem;
+  margin-right: 2.5rem;
   text-transform: capitalize;
+  cursor: pointer;
+  padding: 3rem;
+  height: 50%;
+  transition: transform 400ms ease-in-out;
+  transform: translateX(100%);
+}
+.slide-left {
+  transform: translateX(0%);
 }
 .article-pargraph {
   font-size: 2.2rem;
-}
-.article-pargraph::first-letter {
-  font-size: 3.2rem;
-  background-color: #000;
-  border-radius: 2px;
-  font-family: Georgia, "Times New Roman", Times, serif;
-  padding: 3px;
-  margin-right: 3px;
   color: #fff;
+  height: 100%;
+  padding: 3rem;
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  z-index: -99;
+  transform: translate(-40%, 0%);
+  opacity: 0;
+  transition: transform 400ms ease-in-out, opacity 400ms ease-in-out;
+}
+.slide-right {
+  transform: translate(0%, 0%);
+  opacity: 1;
+  z-index: -1;
 }
 .flot-btn {
   font-size: 2rem !important;
@@ -307,7 +345,7 @@ article {
   top: 95%;
   left: 95%;
   transform: translate(-95%, -95%);
-  background-color: rgb(187, 49, 141);
+  background-color: var(--primary);
   cursor: pointer;
   border: none;
   color: #fff;
@@ -326,8 +364,8 @@ article {
 }
 .btn-right {
   top: 95%;
-  left: 0%;
-  transform: translate(0%, -95%);
+  left: 5%;
+  transform: translate(-5%, -95%);
 }
 
 .flot-btn:focus {
@@ -429,7 +467,7 @@ textarea {
 footer {
   background-color: #fff;
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-  color: rgb(187, 49, 141);
+  color: var(--primary);
   width: 100%;
   padding: 2px;
   position: relative;

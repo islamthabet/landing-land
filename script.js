@@ -1,7 +1,7 @@
 const nav = document.querySelector("nav");
 const navLinks = document.querySelector(".nav-links");
 const articles = document.querySelectorAll("article");
-const articleTitle = document.querySelectorAll(".article-title");
+const articleTitles = document.querySelectorAll(".article-title");
 const addBtn = document.querySelector("#add-btn");
 const myForm = document.querySelector("#my-form");
 const closeBtn = document.querySelector("#close-btn");
@@ -15,6 +15,10 @@ const option = {
   threshould: 0,
   rootMargin: "-50%",
 };
+const slideOption = {
+  threshould: 0,
+  rootMargin: "0px 0px -100px 0px",
+};
 arrowBtn.style.display = "none";
 let count = 1;
 let idWord = "";
@@ -26,7 +30,7 @@ function updateNav(id, title) {
   count++;
 }
 
-for (let item of articleTitle) {
+for (let item of articleTitles) {
   updateNav(item.id, item.innerText);
 }
 const navAnc = document.querySelectorAll(".nav-link");
@@ -37,7 +41,6 @@ const obs = new IntersectionObserver((entries, observer) => {
       return;
     }
     const entryID = entry.target.childNodes[1].id;
-    console.log(entryID);
     navAnc.forEach((anc) => {
       let charIndex = anc.href.indexOf("#") + 1;
       let finId = anc.href.slice(charIndex);
@@ -52,6 +55,20 @@ const obs = new IntersectionObserver((entries, observer) => {
 }, option);
 articles.forEach((ar) => {
   obs.observe(ar);
+});
+
+const slideObs = new IntersectionObserver((entries, observe) => {
+  entries.forEach((e) => {
+    if (!e.isIntersecting) {
+      return;
+    } else {
+      e.target.classList.add("slide-in");
+      slideObs.unobserve(e.target);
+    }
+  });
+}, slideOption);
+articles.forEach((curArticle) => {
+  slideObs.observe(curArticle);
 });
 
 addBtn.addEventListener("click", () => {
@@ -91,7 +108,6 @@ closeBtn.addEventListener("click", (e) => {
 
 myForm.addEventListener("submit", (e) => {
   e.preventDefault();
-  console.log(count);
   sectionEle.innerHTML += `<article>
     <h2 class="article-title" id="article-${count}">${titleInput.value}</h2>
     <p class="article-pargraph">
@@ -115,4 +131,11 @@ navLinks.addEventListener("click", (e) => {
     .scrollIntoView({ behavior: "smooth", block: "center", inline: "nearest" });
 
   e.target.classList.add("active");
+});
+
+articleTitles.forEach((articleTitle) => {
+  articleTitle.addEventListener("click", (e) => {
+    e.target.classList.toggle("slide-left");
+    e.target.nextElementSibling.classList.toggle("slide-right");
+  });
 });
