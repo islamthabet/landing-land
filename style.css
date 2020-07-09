@@ -297,7 +297,7 @@ article {
 }
 .article-title::before {
   content: "";
-  background-color: #000;
+  background-color: #fff;
   opacity: 0.3;
   width: 5rem;
   height: 5rem;
@@ -317,15 +317,16 @@ article {
   padding: 3rem;
   height: 50%;
   transition: transform 400ms ease-in-out;
-  transform: translateX(100%);
+  transform: translate(100%, 50%);
 }
 .slide-left {
-  transform: translateX(0%);
+  transform: translate(0%, 0%);
 }
 .article-pargraph {
   font-size: 2.2rem;
   color: #fff;
-  height: 100%;
+  overflow-y: scroll;
+  height: 85%;
   padding: 3rem;
   font-family: "Lato", sans-serif;
   font-weight: 400;
@@ -333,6 +334,18 @@ article {
   transform: translate(-40%, 0%);
   opacity: 0;
   transition: transform 400ms ease-in-out, opacity 400ms ease-in-out;
+}
+.article-pargraph::-webkit-scrollbar {
+  width: 1rem;
+}
+.article-pargraph::-webkit-scrollbar-track {
+  background: transparent;
+}
+.article-pargraph::-webkit-scrollbar-thumb {
+  background: #c3d7f1;
+}
+.article-pargraph::-webkit-scrollbar-thumb:hover {
+  background: #2f3e5e;
 }
 .slide-right {
   transform: translate(0%, 0%);
