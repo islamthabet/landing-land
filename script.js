@@ -1,6 +1,7 @@
 const data = {
   firstView: document.querySelector(".container"),
   nav: document.querySelector("nav"),
+  mainTitle: document.querySelector(".title-header"),
   navLinks: document.querySelector(".nav-links"),
   articles: document.querySelectorAll("article"),
   articleTitles: document.querySelectorAll(".article-title"),
@@ -120,6 +121,11 @@ const startApp = function () {
   });
 
   window.onscroll = function () {
+    if (!window.pageYOffset > 20) {
+      data.mainTitle.style.transform = `translate(0px,0px)`;
+    } else {
+      data.mainTitle.style.transform = `translate(0px,${window.pageYOffset}px) `;
+    }
     views.scrollFunction();
     views.resizeNav();
   };

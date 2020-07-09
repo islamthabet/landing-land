@@ -100,7 +100,6 @@ nav {
 }
 .title-header {
   width: 100%;
-  transform: translateY(-100%);
   position: relative;
   display: block;
   text-align: center;
@@ -111,7 +110,16 @@ nav {
   font-family: "Arima Madurai", cursive;
   color: #fff;
   font-size: 9rem;
-  letter-spacing: 3rem;
+  letter-spacing: 5rem;
+  text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.6);
+  z-index: 3;
+}
+.title-header span {
+  position: relative;
+  top: -8rem;
+  font-size: 4rem;
+  letter-spacing: 2rem;
+  color: #000;
   text-shadow: 0px 1px 1px rgba(255, 255, 255, 0.6);
   z-index: 3;
 }
@@ -263,10 +271,16 @@ article {
   background-position: top; */
   position: relative;
   padding: 2rem;
-  clip-path: polygon(0 0, 100% 0, 100% 85%, 0% 100%);
+  clip-path: polygon(0 15%, 100% 0, 100% 85%, 0% 100%);
   transform: translate(-20%, 0%);
   opacity: 0;
   transition: transform 400ms ease-in-out, opacity 400ms ease-in-out;
+}
+article:nth-child(1) {
+  clip-path: polygon(0 0, 100% 0, 100% 85%, 0% 100%);
+}
+article:nth-child(4) {
+  clip-path: polygon(0 15%, 100% 0, 100% 100%, 0% 100%);
 }
 .slide-in {
   transform: translate(0%, 0%);
@@ -279,7 +293,7 @@ article {
   height: 100%;
   width: 100%;
   z-index: -1;
-  opacity: 0.15;
+  opacity: 0.35;
   overflow: hidden;
 }
 .video-content {
@@ -328,10 +342,10 @@ article {
   padding: 3rem;
   height: 50%;
   transition: transform 400ms ease-in-out;
-  transform: translate(50%, 50%);
+  transform: translate(100%, 50%);
 }
 .slide-left {
-  transform: translate(0%, 0%);
+  transform: translate(0%, 20%);
 }
 .article-pargraph {
   font-size: 2.2rem;
@@ -359,7 +373,7 @@ article {
   background: #2f3e5e;
 }
 .slide-right {
-  transform: translate(0%, 0%);
+  transform: translate(0%, 15%);
   opacity: 1;
   z-index: -1;
 }
