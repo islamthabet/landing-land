@@ -7,6 +7,7 @@ const data = {
   articleTitles: document.querySelectorAll(".article-title"),
   sectionEle: document.querySelector("section"),
   arrowBtn: document.querySelector("#arrow-btn"),
+  footer: document.querySelector("footer"),
   option: {
     root: null,
     threshould: 0,
@@ -16,6 +17,7 @@ const data = {
     threshould: 0,
     rootMargin: "0px 0px -100px 0px",
   },
+  o: {},
 };
 
 const views = {
@@ -49,6 +51,17 @@ const views = {
       }
     });
   }, data.slideOption),
+
+  footerObs: new IntersectionObserver((entries, observe) => {
+    entries.forEach((e) => {
+      if (!e.isIntersecting) {
+        e.target.classList.remove("show-footer");
+      } else {
+        console.log(e.target);
+        e.target.classList.add("show-footer");
+      }
+    });
+  }, data.o),
 
   updateNav(id, title) {
     data.navLinks.innerHTML += `<li class="nav-items">
@@ -119,6 +132,8 @@ const startApp = function () {
   data.articles.forEach((curArticle) => {
     views.slideObs.observe(curArticle);
   });
+
+  views.footerObs.observe(data.footer);
 
   window.onscroll = function () {
     if (!window.pageYOffset > 20) {
